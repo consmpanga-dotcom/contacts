@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts Database</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Contacts Database</h1>
+
+  <table>
+    <tr>
+      <th>Slot #</th>
+      <th>Name</th>
+    </tr>
+    <tr><td>0</td><td>Arnold</td></tr>
+    <tr><td>1</td><td>Sly</td></tr>
+    <tr><td>2</td><td>Dwayne</td></tr>
+    <tr><td>3</td><td>Vin</td></tr>
+    <tr><td>4</td><td>JCVD</td></tr>
+    <tr><td>5</td><td>Steven</td></tr>
+  </table>
+
+  <button onclick="searchName()">Search for a Name</button>
+
+  <script>
+    const contacts = ["Arnold", "Sly", "Dwayne", "Vin", "JCVD", "Steven"];
+
+    function searchName() {
+      let continueSearch = true;
+
+      while (continueSearch) {
+        let slot = prompt("Enter the Slot Number (0–5):");
+
+        if (slot === null) {
+          alert("Search cancelled.");
+          return;
+        }
+
+        slot = Number(slot);
+
+        if (isNaN(slot) || slot < 0 || slot >= contacts.length) {
+          alert("Invalid slot number. Please try again.");
+          continue;
+        }
+
+        let name = contacts[slot];
+
+        if (name) {
+          alert(`You selected ${name}.`);
+        } else {
+          alert("Name not found. Try again.");
+        }
+
+        let again = confirm("Would you like to search for another name?");
+        continueSearch = again;
+      }
+
+      alert("Goodbye!");
+    }
+  </script>
+</body>
+</html>
